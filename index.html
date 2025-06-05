@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه شخصی</title>
+    <title>Personal Website</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -12,10 +12,25 @@
     <div class="code-background">
         <div class="code-container" id="code-container"></div>
     </div>
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="fa">فارسی</button>
+        <button class="lang-btn" data-lang="en">English</button>
+    </div>
     <div class="content">
         <div class="container" data-aos="fade-up">
-            <h1 class="animate-text">به وبسایت شخصی من خوش آمدید</h1>
+            <h1 class="name animate-text">احمدرضا</h1>
             <p class="slogan" data-aos="fade-up" data-aos-delay="200">making sense of place</p>
+            
+            <div class="intro-text fa-text" data-aos="fade-up" data-aos-delay="300">
+                <p>من یک توسعه‌دهنده نرم‌افزار هستم که به دنبال ایجاد راه‌حل‌های خلاقانه و کاربردی هستم. با ترکیب تخصص فنی و درک عمیق از نیازهای کاربران، من به دنبال ساخت محصولاتی هستم که نه تنها کارآمد هستند، بلکه تجربه کاربری منحصر به فردی را ارائه می‌دهند.</p>
+                <p>هدف من این است که با استفاده از تکنولوژی، راه‌حل‌هایی ایجاد کنم که زندگی مردم را بهبود بخشد و به آنها کمک کند تا بهتر با دنیای دیجیتال تعامل داشته باشند.</p>
+            </div>
+            
+            <div class="intro-text en-text" data-aos="fade-up" data-aos-delay="300" style="display: none;">
+                <p>I am a software developer passionate about creating innovative and practical solutions. By combining technical expertise with a deep understanding of user needs, I strive to build products that are not only efficient but also provide a unique user experience.</p>
+                <p>My goal is to use technology to create solutions that improve people's lives and help them better interact with the digital world.</p>
+            </div>
+
             <div class="button-container" data-aos="fade-up" data-aos-delay="400">
                 <a href="cv.html" class="button">رزومه</a>
                 <a href="blog.html" class="button">وبلاگ</a>
@@ -28,6 +43,35 @@
         AOS.init({
             duration: 1000,
             once: true
+        });
+
+        // Language switching
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const faText = document.querySelector('.fa-text');
+        const enText = document.querySelector('.en-text');
+        const buttons = document.querySelectorAll('.button');
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Update text visibility
+                if (button.dataset.lang === 'fa') {
+                    faText.style.display = 'block';
+                    enText.style.display = 'none';
+                    document.dir = 'rtl';
+                    buttons[0].textContent = 'رزومه';
+                    buttons[1].textContent = 'وبلاگ';
+                } else {
+                    faText.style.display = 'none';
+                    enText.style.display = 'block';
+                    document.dir = 'ltr';
+                    buttons[0].textContent = 'Resume';
+                    buttons[1].textContent = 'Blog';
+                }
+            });
         });
 
         // Code writing effect
