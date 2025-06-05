@@ -9,19 +9,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body>
-    <div class="parallax-container">
-        <div class="parallax-bg"></div>
-        <div class="content">
-            <div class="container" data-aos="fade-up">
+    <div class="matrix-bg"></div>
+    <div class="content">
+        <div class="container" data-aos="fade-up">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-button close"></span>
+                    <span class="terminal-button minimize"></span>
+                    <span class="terminal-button maximize"></span>
+                </div>
+                <div class="terminal-title">user@portfolio:~</div>
+            </div>
+            <div class="terminal-body">
+                <div class="typing-text" id="typing-text"></div>
                 <h1 class="animate-text">به وبسایت شخصی من خوش آمدید</h1>
-                <p class="subtitle" data-aos="fade-up" data-aos-delay="200">طراح و توسعه‌دهنده وب</p>
+                <p class="subtitle" data-aos="fade-up" data-aos-delay="200">> توسعه‌دهنده نرم‌افزار</p>
                 <div class="button-container" data-aos="fade-up" data-aos-delay="400">
                     <a href="cv.html" class="button">
-                        <span class="button-text">مشاهده رزومه</span>
+                        <span class="button-text">$ cat resume.txt</span>
                         <span class="button-icon">→</span>
                     </a>
                     <a href="blog.html" class="button">
-                        <span class="button-text">مشاهده وبلاگ</span>
+                        <span class="button-text">$ cd blog/</span>
                         <span class="button-icon">→</span>
                     </a>
                 </div>
@@ -36,12 +45,58 @@
             once: true
         });
 
-        // Parallax effect
-        window.addEventListener('scroll', () => {
-            const parallax = document.querySelector('.parallax-bg');
-            let scrollPosition = window.pageYOffset;
-            parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
-        });
+        // Matrix rain effect
+        const matrix = document.querySelector('.matrix-bg');
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]|;:,.<>?';
+        const fontSize = 14;
+        const columns = Math.floor(window.innerWidth / fontSize);
+        
+        for(let i = 0; i < columns; i++) {
+            const column = document.createElement('div');
+            column.className = 'matrix-column';
+            column.style.left = (i * fontSize) + 'px';
+            matrix.appendChild(column);
+            
+            let text = '';
+            const length = Math.floor(Math.random() * 20) + 10;
+            
+            for(let j = 0; j < length; j++) {
+                text += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            
+            column.textContent = text;
+            column.style.animationDelay = (Math.random() * 2) + 's';
+        }
+
+        // Typing effect
+        const codeSnippets = [
+            'const developer = new Developer();',
+            'while(alive) { code(); }',
+            'git commit -m "Initial commit"',
+            'npm install creativity',
+            'function createAwesome() { return true; }'
+        ];
+
+        const typingText = document.getElementById('typing-text');
+        let currentSnippet = 0;
+        let currentChar = 0;
+
+        function typeCode() {
+            if (currentChar < codeSnippets[currentSnippet].length) {
+                typingText.textContent += codeSnippets[currentSnippet].charAt(currentChar);
+                currentChar++;
+                setTimeout(typeCode, Math.random() * 100 + 50);
+            } else {
+                setTimeout(() => {
+                    typingText.textContent = '';
+                    currentChar = 0;
+                    currentSnippet = (currentSnippet + 1) % codeSnippets.length;
+                    typeCode();
+                }, 2000);
+            }
+        }
+
+        typeCode();
     </script>
 </body>
 </html> 
