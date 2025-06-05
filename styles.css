@@ -93,11 +93,11 @@ body {
     line-height: 1.2;
 }
 
-.name .fa-text {
+h1.name .fa-text {
     margin-right: 2rem;
 }
 
-.name .en-text {
+h1.name .en-text {
     margin-left: 2rem;
 }
 
