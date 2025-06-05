@@ -6,14 +6,42 @@
     <title>صفحه شخصی</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>به وبسایت شخصی من خوش آمدید</h1>
-        <div class="button-container">
-            <a href="cv.html" class="button">مشاهده رزومه</a>
-            <a href="blog.html" class="button">مشاهده وبلاگ</a>
+    <div class="parallax-container">
+        <div class="parallax-bg"></div>
+        <div class="content">
+            <div class="container" data-aos="fade-up">
+                <h1 class="animate-text">به وبسایت شخصی من خوش آمدید</h1>
+                <p class="subtitle" data-aos="fade-up" data-aos-delay="200">طراح و توسعه‌دهنده وب</p>
+                <div class="button-container" data-aos="fade-up" data-aos-delay="400">
+                    <a href="cv.html" class="button">
+                        <span class="button-text">مشاهده رزومه</span>
+                        <span class="button-icon">→</span>
+                    </a>
+                    <a href="blog.html" class="button">
+                        <span class="button-text">مشاهده وبلاگ</span>
+                        <span class="button-icon">→</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelector('.parallax-bg');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+    </script>
 </body>
 </html> 
