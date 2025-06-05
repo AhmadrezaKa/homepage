@@ -9,17 +9,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body>
-    <div class="code-background">
-        <div class="code-container" id="code-container"></div>
-    </div>
+    <div class="dynamic-background" id="dynamic-bg"></div>
     <div class="language-selector">
         <button class="lang-btn active" data-lang="fa">فارسی</button>
         <button class="lang-btn" data-lang="en">English</button>
     </div>
     <div class="content">
         <div class="container" data-aos="fade-up">
-            <h1 class="name animate-text">احمدرضا</h1>
-            <p class="slogan" data-aos="fade-up" data-aos-delay="200">making sense of place</p>
+            <h1 class="name animate-text">
+                <span class="fa-text">احمدرضا</span>
+                <span class="en-text" style="display: none;">Ahmadreza</span>
+            </h1>
+            <p class="slogan" data-aos="fade-up" data-aos-delay="200">
+                <span class="fa-text">معنا بخشیدن به مکان</span>
+                <span class="en-text" style="display: none;">making sense of place</span>
+            </p>
             
             <div class="intro-text fa-text" data-aos="fade-up" data-aos-delay="300">
                 <p>من یک توسعه‌دهنده نرم‌افزار هستم که به دنبال ایجاد راه‌حل‌های خلاقانه و کاربردی هستم. با ترکیب تخصص فنی و درک عمیق از نیازهای کاربران، من به دنبال ساخت محصولاتی هستم که نه تنها کارآمد هستند، بلکه تجربه کاربری منحصر به فردی را ارائه می‌دهند.</p>
@@ -47,8 +51,8 @@
 
         // Language switching
         const langButtons = document.querySelectorAll('.lang-btn');
-        const faText = document.querySelector('.fa-text');
-        const enText = document.querySelector('.en-text');
+        const faTexts = document.querySelectorAll('.fa-text');
+        const enTexts = document.querySelectorAll('.en-text');
         const buttons = document.querySelectorAll('.button');
 
         langButtons.forEach(button => {
@@ -59,14 +63,14 @@
 
                 // Update text visibility
                 if (button.dataset.lang === 'fa') {
-                    faText.style.display = 'block';
-                    enText.style.display = 'none';
+                    faTexts.forEach(text => text.style.display = 'block');
+                    enTexts.forEach(text => text.style.display = 'none');
                     document.dir = 'rtl';
                     buttons[0].textContent = 'رزومه';
                     buttons[1].textContent = 'وبلاگ';
                 } else {
-                    faText.style.display = 'none';
-                    enText.style.display = 'block';
+                    faTexts.forEach(text => text.style.display = 'none');
+                    enTexts.forEach(text => text.style.display = 'block');
                     document.dir = 'ltr';
                     buttons[0].textContent = 'Resume';
                     buttons[1].textContent = 'Blog';
@@ -74,74 +78,58 @@
             });
         });
 
-        // Code writing effect
-        const codeContainer = document.getElementById('code-container');
-        const codeSnippets = [
-            `function calculateFibonacci(n) {
-    if (n <= 1) return n;
-    return calculateFibonacci(n-1) + calculateFibonacci(n-2);
-}`,
-            `class Developer {
-    constructor() {
-        this.skills = ['JavaScript', 'Python', 'React'];
-        this.passion = 'Coding';
-    }
-    
-    code() {
-        return 'Awesome stuff';
-    }
-}`,
-            `async function fetchData() {
-    try {
-        const response = await fetch('/api/data');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}`,
-            `const quickSort = (arr) => {
-    if (arr.length <= 1) return arr;
-    const pivot = arr[0];
-    const left = arr.filter(x => x < pivot);
-    const right = arr.filter(x => x > pivot);
-    return [...quickSort(left), pivot, ...quickSort(right)];
-}`,
-            `#include <iostream>
-using namespace std;
+        // Dynamic background
+        const dynamicBg = document.getElementById('dynamic-bg');
+        const particles = [];
+        const particleCount = 50;
 
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
-}`
-        ];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.element = document.createElement('div');
+                this.element.className = 'particle';
+                this.element.style.width = this.size + 'px';
+                this.element.style.height = this.size + 'px';
+                dynamicBg.appendChild(this.element);
+            }
 
-        function createCodeElement() {
-            const codeElement = document.createElement('pre');
-            codeElement.className = 'code-block';
-            return codeElement;
-        }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-        function typeCode(element, text, index = 0) {
-            if (index < text.length) {
-                element.textContent += text[index];
-                setTimeout(() => typeCode(element, text, index + 1), Math.random() * 30 + 10);
-            } else {
-                setTimeout(() => {
-                    element.textContent = '';
-                    const newText = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-                    typeCode(element, newText);
-                }, 2000);
+                if (this.x > window.innerWidth) this.x = 0;
+                if (this.x < 0) this.x = window.innerWidth;
+                if (this.y > window.innerHeight) this.y = 0;
+                if (this.y < 0) this.y = window.innerHeight;
+
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
 
-        // Create multiple code blocks
-        for (let i = 0; i < 5; i++) {
-            const codeElement = createCodeElement();
-            codeContainer.appendChild(codeElement);
-            const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-            setTimeout(() => typeCode(codeElement, randomSnippet), i * 1000);
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
         }
+
+        // Animation loop
+        function animate() {
+            particles.forEach(particle => particle.update());
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            particles.forEach(particle => {
+                if (particle.x > window.innerWidth) particle.x = window.innerWidth;
+                if (particle.y > window.innerHeight) particle.y = window.innerHeight;
+            });
+        });
     </script>
 </body>
 </html> 
