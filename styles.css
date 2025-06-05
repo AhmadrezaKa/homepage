@@ -88,9 +88,17 @@ body {
     color: #D3A62E;
     margin-bottom: 1rem;
     font-size: 5rem;
-    font-weight: 300;
+    font-weight: 800;
     letter-spacing: 2px;
     line-height: 1.2;
+}
+
+.name .fa-text {
+    margin-right: 2rem;
+}
+
+.name .en-text {
+    margin-left: 2rem;
 }
 
 .slogan {
