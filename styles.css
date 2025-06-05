@@ -95,10 +95,14 @@ body {
 
 h1.name .fa-text {
     margin-right: 2rem;
+    direction: rtl;
+    text-align: right;
 }
 
 h1.name .en-text {
     margin-left: 2rem;
+    direction: ltr;
+    text-align: left;
 }
 
 .slogan {
@@ -126,6 +130,16 @@ h1.name .en-text {
 
 .intro-text p:last-child {
     margin-bottom: 0;
+}
+
+.intro-text.fa-text {
+    direction: rtl;
+    text-align: right;
+}
+
+.intro-text.en-text {
+    direction: ltr;
+    text-align: left;
 }
 
 .button-container {
