@@ -6,10 +6,10 @@
 }
 
 body {
-    background-color: #1a1a1a;
+    background-color: #1F3856;
     min-height: 100vh;
     overflow-x: hidden;
-    color: #e0e0e0;
+    color: #D3A62E;
 }
 
 .dynamic-background {
@@ -24,7 +24,7 @@ body {
 
 .particle {
     position: absolute;
-    background-color: rgba(224, 224, 224, 0.1);
+    background-color: rgba(211, 166, 46, 0.1);
     border-radius: 50%;
     pointer-events: none;
     transition: transform 0.1s linear;
@@ -41,8 +41,8 @@ body {
 
 .lang-btn {
     background: transparent;
-    border: 1px solid #404040;
-    color: #808080;
+    border: 1px solid #D3A62E;
+    color: #D3A62E;
     padding: 8px 16px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -50,13 +50,22 @@ body {
 }
 
 .lang-btn:hover {
-    background-color: rgba(64, 64, 64, 0.3);
+    background-color: rgba(211, 166, 46, 0.1);
 }
 
 .lang-btn.active {
-    background-color: rgba(64, 64, 64, 0.5);
-    color: #e0e0e0;
-    border-color: #808080;
+    background-color: rgba(211, 166, 46, 0.2);
+    color: #D3A62E;
+    border-color: #D3A62E;
+}
+
+/* Fix language button order */
+.fa-btn {
+    order: 1;
+}
+
+.en-btn {
+    order: 2;
 }
 
 .content {
@@ -76,7 +85,7 @@ body {
 }
 
 .name {
-    color: #e0e0e0;
+    color: #D3A62E;
     margin-bottom: 1rem;
     font-size: 5rem;
     font-weight: 300;
@@ -85,12 +94,13 @@ body {
 }
 
 .slogan {
-    color: #808080;
+    color: #D3A62E;
     font-size: 1.2rem;
     margin-bottom: 3rem;
     font-family: 'Consolas', monospace;
     letter-spacing: 2px;
     line-height: 1.5;
+    opacity: 0.9;
 }
 
 .intro-text {
@@ -98,7 +108,8 @@ body {
     margin: 0 auto 3rem;
     line-height: 1.8;
     font-size: 1.1rem;
-    color: #b0b0b0;
+    color: #D3A62E;
+    opacity: 0.8;
 }
 
 .intro-text p {
@@ -119,15 +130,15 @@ body {
     display: inline-block;
     padding: 1rem 3rem;
     background-color: transparent;
-    color: #e0e0e0;
+    color: #D3A62E;
     text-decoration: none;
-    border: 1px solid #404040;
+    border: 1px solid #D3A62E;
     transition: all 0.3s ease;
     font-size: 1.1rem;
 }
 
 .button:hover {
-    background-color: rgba(64, 64, 64, 0.3);
+    background-color: rgba(211, 166, 46, 0.1);
     transform: translateY(-2px);
 }
 
