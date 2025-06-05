@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body>
-    <div class="matrix-bg"></div>
+    <div class="code-background">
+        <div class="code-container" id="code-container"></div>
+    </div>
     <div class="content">
         <div class="container" data-aos="fade-up">
             <div class="terminal-header">
@@ -21,7 +23,6 @@
                 <div class="terminal-title">user@portfolio:~</div>
             </div>
             <div class="terminal-body">
-                <div class="typing-text" id="typing-text"></div>
                 <h1 class="animate-text">به وبسایت شخصی من خوش آمدید</h1>
                 <p class="subtitle" data-aos="fade-up" data-aos-delay="200">> توسعه‌دهنده نرم‌افزار</p>
                 <div class="button-container" data-aos="fade-up" data-aos-delay="400">
@@ -45,58 +46,74 @@
             once: true
         });
 
-        // Matrix rain effect
-        const matrix = document.querySelector('.matrix-bg');
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]|;:,.<>?';
-        const fontSize = 14;
-        const columns = Math.floor(window.innerWidth / fontSize);
-        
-        for(let i = 0; i < columns; i++) {
-            const column = document.createElement('div');
-            column.className = 'matrix-column';
-            column.style.left = (i * fontSize) + 'px';
-            matrix.appendChild(column);
-            
-            let text = '';
-            const length = Math.floor(Math.random() * 20) + 10;
-            
-            for(let j = 0; j < length; j++) {
-                text += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            
-            column.textContent = text;
-            column.style.animationDelay = (Math.random() * 2) + 's';
-        }
-
-        // Typing effect
+        // Code writing effect
+        const codeContainer = document.getElementById('code-container');
         const codeSnippets = [
-            'const developer = new Developer();',
-            'while(alive) { code(); }',
-            'git commit -m "Initial commit"',
-            'npm install creativity',
-            'function createAwesome() { return true; }'
+            `function calculateFibonacci(n) {
+    if (n <= 1) return n;
+    return calculateFibonacci(n-1) + calculateFibonacci(n-2);
+}`,
+            `class Developer {
+    constructor() {
+        this.skills = ['JavaScript', 'Python', 'React'];
+        this.passion = 'Coding';
+    }
+    
+    code() {
+        return 'Awesome stuff';
+    }
+}`,
+            `async function fetchData() {
+    try {
+        const response = await fetch('/api/data');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}`,
+            `const quickSort = (arr) => {
+    if (arr.length <= 1) return arr;
+    const pivot = arr[0];
+    const left = arr.filter(x => x < pivot);
+    const right = arr.filter(x => x > pivot);
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}`,
+            `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`
         ];
 
-        const typingText = document.getElementById('typing-text');
-        let currentSnippet = 0;
-        let currentChar = 0;
+        function createCodeElement() {
+            const codeElement = document.createElement('pre');
+            codeElement.className = 'code-block';
+            return codeElement;
+        }
 
-        function typeCode() {
-            if (currentChar < codeSnippets[currentSnippet].length) {
-                typingText.textContent += codeSnippets[currentSnippet].charAt(currentChar);
-                currentChar++;
-                setTimeout(typeCode, Math.random() * 100 + 50);
+        function typeCode(element, text, index = 0) {
+            if (index < text.length) {
+                element.textContent += text[index];
+                setTimeout(() => typeCode(element, text, index + 1), Math.random() * 30 + 10);
             } else {
                 setTimeout(() => {
-                    typingText.textContent = '';
-                    currentChar = 0;
-                    currentSnippet = (currentSnippet + 1) % codeSnippets.length;
-                    typeCode();
+                    element.textContent = '';
+                    const newText = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                    typeCode(element, newText);
                 }, 2000);
             }
         }
 
-        typeCode();
+        // Create multiple code blocks
+        for (let i = 0; i < 5; i++) {
+            const codeElement = createCodeElement();
+            codeContainer.appendChild(codeElement);
+            const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+            setTimeout(() => typeCode(codeElement, randomSnippet), i * 1000);
+        }
     </script>
 </body>
 </html> 
