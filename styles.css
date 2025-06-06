@@ -78,7 +78,7 @@ body {
 }
 
 .container {
-    text-align: center;
+    text-align: left;
     padding: 3rem;
     max-width: 1000px;
     width: 90%;
@@ -91,6 +91,7 @@ body {
     font-weight: 600;
     letter-spacing: 2px;
     line-height: 1.2;
+    text-align: left;
 }
 
 h1.name .fa-text {
@@ -114,6 +115,7 @@ h1.name .en-text {
     letter-spacing: 2px;
     line-height: 1.5;
     opacity: 0.9;
+    text-align: left;
 }
 
 .intro-text {
