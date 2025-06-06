@@ -24,11 +24,11 @@ body {
 
 .particle {
     position: absolute;
-    background-color: rgba(211, 166, 46, 0.2);
-    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100%;
     pointer-events: none;
     transition: transform 0.1s linear;
-    box-shadow: 0 0 4px rgba(211, 166, 46, 0.3);
+    box-shadow: 0 0 4px rgba(255, 254, 254, 0.3);
 }
 
 .language-selector {
