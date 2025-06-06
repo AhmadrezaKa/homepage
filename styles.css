@@ -97,6 +97,7 @@ h1.name .fa-text {
     margin-right: 2rem;
     direction: rtl;
     text-align: right;
+    display: none;
 }
 
 h1.name .en-text {
@@ -135,6 +136,7 @@ h1.name .en-text {
 .intro-text.fa-text {
     direction: rtl;
     text-align: right;
+    display: none;
 }
 
 .intro-text.en-text {
