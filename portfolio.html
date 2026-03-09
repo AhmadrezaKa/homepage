@@ -241,6 +241,7 @@ body.rtl footer{font-family:'Vazirmatn',sans-serif;letter-spacing:0;}
       <a href="#about" id="nav-about">About</a>
       <a href="#skills" id="nav-skills">Skills</a>
       <a href="#projects" id="nav-projects">Projects</a>
+      <a href="blog.html" id="nav-blog">Blog</a>
     </div>
   </div>
 </nav>
@@ -345,6 +346,29 @@ body.rtl footer{font-family:'Vazirmatn',sans-serif;letter-spacing:0;}
           </div>
         </div>
         <div class="sec-dot-sm"></div>
+      </div>
+
+      <div class="section-block" id="blog">
+        <div class="section-label" id="blog-label">Writing</div>
+        <div class="section-title" id="blog-title">Notes from the workflow.</div>
+        <div class="blog-list">
+          <article class="blog-card" data-blog-id="2026-03-01-first-note">
+            <div class="blog-meta">01 Mar 2026 · First note</div>
+            <h3 class="blog-title">Why I like breaking systems</h3>
+            <p class="blog-body">
+              A simple space where I occasionally write about GIS, FME, automation,
+              and the ideas that come up while fixing (and breaking) real systems.
+            </p>
+            <div class="blog-comments">
+              <div class="blog-comments-title">Comments</div>
+              <ul class="blog-comment-list"></ul>
+              <form class="blog-comment-form">
+                <textarea class="blog-comment-input" placeholder="Add a comment..."></textarea>
+                <button type="submit" class="blog-comment-submit">Post</button>
+              </form>
+            </div>
+          </article>
+        </div>
       </div>
 
     </div>
@@ -456,7 +480,7 @@ requestAnimationFrame(frame);
 // ── LANGUAGE SWITCHER ──
 const content = {
   en:{
-    navAbout:'About',navSkills:'Skills',navProjects:'Projects',
+    navAbout:'About',navSkills:'Skills',navProjects:'Projects',navBlog:'Blog',
     heroTag:'GIS & FME Specialist',
     heroTitle:'I map things,<br/><span>automate stuff,</span><br/>& break systems<br/>to fix them better.',
     heroSub:'Code, logic, and just enough frustration to keep it interesting. Turning messy spatial problems into clean, repeatable solutions.',
@@ -470,11 +494,12 @@ const content = {
     p2num:'02 — AUTOMATION',p2title:'ArcPy Automation Suite',p2desc:'ArcPy scripts automating repetitive cartographic and spatial analysis tasks, significantly reducing manual processing time.',
     p3num:'03 — ETL',p3title:'Spatial ETL Redesign',p3desc:'Rebuilt a legacy GIS pipeline from scratch — replacing brittle steps with a robust, repeatable ETL process that scales with data.',
     p4num:'04 — INTEGRATION',p4title:'API-Connected GIS Workflow',p4desc:'Live-data GIS system pulling from REST APIs, processing spatial data on the fly and outputting clean structured results.',
+    blogLabel:'Writing',blogTitle:'Notes from the workflow.',
     footerText:'Ahmadreza — GIS & FME Specialist · 2026',
     profileRole:'GIS & FME<br/>Specialist',
   },
   fa:{
-    navAbout:'درباره او',navSkills:'مهارت‌ها',navProjects:'پروژه‌ها',
+    navAbout:'درباره او',navSkills:'مهارت‌ها',navProjects:'پروژه‌ها',navBlog:'بلاگ',
     heroTag:'متخصص GIS و FME',
     heroTitle:'نقشه می‌کشم،<br/><span>اتوماسیون می‌سازم،</span><br/>و سیستم‌ها را می‌شکنم<br/>تا بهتر بسازمشان.',
     heroSub:'کد، منطق، و درست به اندازه‌ای از چالش که کار را جذاب نگه دارد. تبدیل مسائل پیچیده مکانی به راه‌حل‌های ساده و قابل تکرار.',
@@ -488,6 +513,7 @@ const content = {
     p2num:'۰۲ — اتوماسیون',p2title:'مجموعه اسکریپت‌های ArcPy',p2desc:'مجموعه‌ای از اسکریپت‌های ArcPy برای خودکارسازی وظایف تکراری تحلیل مکانی.',
     p3num:'۰۳ — ETL',p3title:'بازطراحی ETL مکانی',p3desc:'بازنویسی کامل یک خط لوله قدیمی GIS — جایگزینی مراحل دستی شکننده با فرآیند ETL قوی و قابل تکرار.',
     p4num:'۰۴ — یکپارچه‌سازی',p4title:'گردش‌کار GIS متصل به API',p4desc:'سیستم GIS با داده زنده که از REST APIهای خارجی داده می‌کشد و نتایج ساختاریافته تولید می‌کند.',
+    blogLabel:'یادداشت‌ها',blogTitle:'یادداشت‌هایی از کار روزمره.',
     footerText:'احمدرضا — متخصص GIS و FME · ۱۴۰۵',
     profileRole:'متخصص GIS<br/>و FME',
   }
@@ -501,6 +527,8 @@ function setLang(lang){
   d.getElementById('nav-about').textContent=t.navAbout;
   d.getElementById('nav-skills').textContent=t.navSkills;
   d.getElementById('nav-projects').textContent=t.navProjects;
+  const navBlog = d.getElementById('nav-blog');
+  if(navBlog) navBlog.textContent = t.navBlog;
   d.getElementById('hero-tag').textContent=t.heroTag;
   d.getElementById('hero-title').innerHTML=t.heroTitle;
   d.getElementById('hero-sub').textContent=t.heroSub;
@@ -526,6 +554,10 @@ function setLang(lang){
   d.getElementById('p4-num').textContent=t.p4num;
   d.getElementById('p4-title').textContent=t.p4title;
   d.getElementById('p4-desc').textContent=t.p4desc;
+  const blogLabel = d.getElementById('blog-label');
+  const blogTitle = d.getElementById('blog-title');
+  if(blogLabel) blogLabel.textContent = t.blogLabel;
+  if(blogTitle) blogTitle.textContent = t.blogTitle;
   d.getElementById('footer-text').textContent=t.footerText;
   d.getElementById('profile-role').innerHTML=t.profileRole;
 }
